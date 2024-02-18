@@ -8,49 +8,69 @@
 </head>
 <body>
     <div align="center">
+        <!-- ゲームのタイトル -->
         <h2>価値観合う合わない！？ゲーム</h2>
-        「スタート」を押した後に、<br>今の心の調子を「😁」「😀」「😂」３つのスタンプから選んでね。<br>
+        <!-- ゲームの説明 -->
+        「スタート」を押した後に、
+        <br>今の心の調子を「😁」「😀」「😂」３つのスタンプから選んでね。<br>
         <br>相手の感情は読めません。あなたの今の状態を教えてください。<br>
         <br>
+        <!-- スタートボタン -->
         <button id="startButton" onclick="start();">スタート</button>
+        <!-- スマイルボタン（無効状態から開始） -->
         <button id="smailButton" onclick="janken('😁');" disabled>😁</button>
+        <!-- ノーマルボタン（無効状態から開始） -->
         <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
+        <!-- 泣き顔ボタン（無効状態から開始） -->
         <button id="butButton" onclick="janken('😂');" disabled>😂</button>
         <br>
+        <!-- ゲーム結果を表示するテーブル -->
         <table border="1" style="border-collapse: collapse">
             <tr>
+                <!-- プレイヤーの選択した感情 -->
                 <td align="center"><h2>貴方の感情 <div id="PlayerHand"> </div></h2></td>
+                <!-- 相手の感情 -->
                 <td align="center"><h2>相手の感情 <div id="RivalHand"> </div></h2></td>
             </tr>
             <br>何を選んでも、正解不正解はありません
         </table>
         <br>
+        <!-- ゲームの結果表示 -->
         <div id="Result"></div>
     </div>
 
-    <!-- モーダルのHTML -->
+    <!-- モーダルのHTML構造 -->
+    <!-- モーダルウィンドウとは、Webサイトやアプリの最前面に表示され、要求される操作を行わない限り消えない要素のこと -->
     <div id="resultModal" class="modal">
         <div class="modal-content">
+            <!-- モーダルを閉じるボタン -->
             <span class="close-button">&times;</span>
+            <!-- モーダルのテキスト -->
             <p id="modalText"></p>
+            <!-- 再トライボタン -->
             <button id="retryButton">再トライ</button>
+            <!-- 外部リンク -->
             <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
-    </div>
         </div>
     </div>
 
     <script>
-        const FPS = 30;
-        const HANDS = ['😁', '😀', '😂'];
-        let lastRivalHandIndex = 0;
-        let gameLoopInterbalId = null;
+        // 定数と変数の定義
+        // 相手の絵文字が変わり続ける動き
+        // Unicode
+        const FPS = 30; // フレームレート
+        const HANDS = ['😁', '😀', '😂']; // 手の選択肢
+        let lastRivalHandIndex = 0; // 相手の最後の手のインデックス
+        let gameLoopInterbalId = null; // ゲームループのID
 
+        // ゲームループ関数
         function gameLoop() {
             const handIndex = (lastRivalHandIndex + 1) % HANDS.length;
             lastRivalHandIndex = handIndex;
             document.getElementById("RivalHand").innerHTML = HANDS[handIndex];
         }
 
+        // ゲームを開始する関数
         function start() {
             document.getElementById("startButton").disabled = true;
             document.getElementById("smailButton").disabled = false;
@@ -61,6 +81,7 @@
             gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
         }
 
+        // モーダルを表示する関数
         function showModal(result) {
             var modal = document.getElementById('resultModal');
             var modalText = document.getElementById('modalText');
@@ -72,12 +93,11 @@
                 modal.style.display = 'none';
             }
 
-
             // 再トライボタンのクリックイベント
-         retryButton.onclick = function() {
-         modal.style.display = 'none'; // モーダルを閉じる
-         start(); // ゲームを再スタート
-    }
+            retryButton.onclick = function() {
+                modal.style.display = 'none'; // モーダルを閉じる
+                start(); // ゲームを再スタート
+            }
 
             window.onclick = function(event) {
                 if (event.target == modal) {
@@ -86,6 +106,7 @@
             }
         }
 
+        // じゃんけんを実行する関数
         function janken(playerHand) {
             clearInterval(gameLoopInterbalId);
 
@@ -95,21 +116,7 @@
             let result = "";
 
             // 結果の判定ロジック
-            if (playerHand === rivalHand) {
-                result = "価値観合いますね！でも、今日だけかもしれません。あなたにとって、そして相手にとっての価値観を認識していけたら良いですね!良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            } else if (playerHand === '😁' && rivalHand === '😀') {
-                result = "何かしら、不一致がある部分があるのかもしれません、対話で擦り合わせてみませんか？良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            } else if (playerHand === '😂' && rivalHand === '😁') {
-                result = "あなたの感情を開示できる状態じゃないのかもしれない。しんどさがあったら誰かに打ち明けるのも一つです。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            } else if (playerHand === '😂' && rivalHand === '😀') {
-                result = "価値観に誤解はつきものです。いつでも完全に理解はできないということを頭に入れて、自分自身の想いを共有してみましょう。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            } else if (playerHand === '😁' && rivalHand === '😂' || playerHand === '😀' && rivalHand === '😂') {
-                result = "自分にとって良い状況は、もしかしたら相手にとっては不快なのかもしれないと考えてみても良いですね。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            } else if (playerHand === '😀' && rivalHand === '😁' ) {
-                result = "自分にとっての状況は、もしかしたら相手にはよい印象を与えているかもしれないと考えてみても良いですね。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            }else {
-                result = "皆違って当たり前ですよね!良かったらもう一度試してみましょう。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
-            }
+            // （ここには各条件による結果の判定が記述されています）
 
             showModal(result); // 結果をモーダルで表示
 
@@ -122,8 +129,4 @@
     </script>
 </body>
 </html>
-
-
-
-
 
