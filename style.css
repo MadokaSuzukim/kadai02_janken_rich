@@ -84,6 +84,7 @@ button:disabled {
     cursor: pointer;
 }
 
+/* MARUMARKボタンの色や表示方法 */
 .marumark-button {
     display: inline-block;
     background-color: blue; /* 背景色 */
@@ -96,7 +97,7 @@ button:disabled {
     cursor: pointer; /* カーソルを指に */
     border-radius: 5px; /* 角丸 */
 }
-
+/* MARUMARKボタン */
 .marumark-button:hover {
     background-color: blue; /* ホバー時の背景色 */
 }
