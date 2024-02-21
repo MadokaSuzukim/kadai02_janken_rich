@@ -13,7 +13,7 @@
         <br>相手の感情は読めません。あなたの今の状態を教えてください。<br>
         <br>
         <!-- バックグラウンドミュージック用のaudioタグを追加 -->
-        <audio id="backgroundMusic" loop autoplay muted>
+        <audio id="backgroundMusic" loop>
             <source src="backmusic.m4a" type="audio/mp3">
         </audio>
         
@@ -130,7 +130,6 @@
             audio(); // 音声を再生する関数を呼び出す
             start(); // ゲームのスタート処理を呼び出す
            }
-
             function audio() {
 
             var sound = document.getElementById("btn_audio");

@@ -30,7 +30,7 @@ button {
 
 /* ボタンホバー時 */
 button:hover {
-    background-color: #45a049; /* ホバー時の背景色 */
+    background-color: palevioletred; /* ホバー時の背景色 */
 }
 
 /* ボタン非活性時 */
@@ -139,7 +139,6 @@ button:disabled {
     color: #666666;
     cursor: not-allowed;
 }
-
 
 .startButton {
     box-sizing: border-box;
