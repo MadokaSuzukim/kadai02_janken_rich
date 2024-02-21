@@ -25,9 +25,9 @@
         <audio id="btn_audio">
             <source src="start.mp3" type="audio/mp3">
         </audio>
-        <button id="smileButton" onclick="janken('😁');" disabled>😁</button>
-        <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
-        <button id="cryButton" onclick="janken('😂');" disabled>😂</button>
+            <button id="smileButton" onclick="janken('😁');" disabled>😁</button>
+            <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
+            <button id="cryButton" onclick="janken('😂');" disabled>😂</button>
         <br>
         <table border="1" style="border-collapse: collapse">
             <tr>
@@ -96,7 +96,6 @@
         const HANDS = ['😁', '😀', '😂'];
         let lastRivalHandIndex = 0;
         let gameLoopInterbalId = null;
-
         function gameLoop() {
             const handIndex = (lastRivalHandIndex + 1) % HANDS.length;
             lastRivalHandIndex = handIndex;
@@ -106,8 +105,6 @@
         function start() {
             // ここにゲームのスタートに関する処理を記述 */
             console.log("ゲームをスタートします。");
-            // スタートボタンを無効化する
-            // document.getElementById("startButton").disabled = true;
 
             // 他のボタンを有効化する
             document.getElementById("smileButton").disabled = false;
@@ -142,12 +139,9 @@
             sound.play(); // 音声を再生
     }
 }
-
     function closeWithSound() {
     var sound = document.getElementById("close_audio"); // close_audio要素を取得
     sound.play(); // 音声を再生
-
-    
 }
     // モーダルを閉じる処理もここに追加するか、もしくはモーダルを閉じる別の処理をトリガーする
     var modal = document.getElementById('resultModal');
@@ -269,7 +263,8 @@ var modal = document.getElementById('myModal');
 }
 
     </script>
-</body>
-<footer><a target="_blank" href="https://icons8.com/icon/NC4u31qGQ7Rz/ok">OK</a> アイコン by <a target="_blank" href="https://icons8.com">Icons8</a></footer>
-</html>
+<footer>
+    <a target="_blank" href="https://icons8.com/icon/NC4u31qGQ7Rz/ok">OK</a> アイコン by <a target="_blank" href="https://icons8.com">Icons8</a>
+</footer>
+</body></html>
  
