@@ -7,26 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="icon" href="path/to/favicon.ico" type="image/x-icon"> -->
 </head>
-<body>
     <div align="center">
         <h2>価値観合う合わない！？ゲーム</h2>
         「スタート」を押した後に、<br>今の心の調子を「😁」「😀」「😂」３つのスタンプから選んでね。<br>
         <br>相手の感情は読めません。あなたの今の状態を教えてください。<br>
         <br>
-
         <!-- スタートボタンに音声再生機能を組み合わせる -->
         <button onclick="startWithSound();">スタート（音付き）</button>
-        <!-- <div class="btn" onclick="startWithSound();">スタート</div> -->
-        
         <!-- mute切り替えボタン -->
-        <div class="mute_btn" onclick="mute()">muteの切り替え</div>
-
+        <button id="muteButton" onclick="toggleMute()">Mute / Unmute</button>
         <!-- 音声ファイル -->
         <audio id="btn_audio">
-        <source src="start.mp3" type="audio/mp3">
+            <source src="start.mp3" type="audio/mp3">
         </audio>
-
-        <!-- <button id="startButton" onclick="start();">スタート</button>  -->
         <button id="smileButton" onclick="janken('😁');" disabled>😁</button>
         <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
         <button id="cryButton" onclick="janken('😂');" disabled>😂</button>
@@ -36,8 +29,42 @@
                 <td align="center"><h2>貴方の感情 <div id="PlayerHand"> </div></h2></td>
                 <td align="center"><h2>相手の感情 <div id="RivalHand"> </div></h2></td>
             </tr>
-            <br>何を選んでも、正解不正解はありません
         </table>
+        <br>
+        <div id="Result"></div>
+    </div>
+    <!-- モーダルのHTML -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modalText"></p>
+            <button id="retryButton">再トライ</button>
+            <audio id="close_audio">
+                <source src="next.mp3" type="audio/mp3">
+            </audio>
+            <button onclick="closeWithSound();">終了する</button>
+            <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+</html>
+
+
+
+
+
+<table border="1" style="border-collapse: collapse">
+           
+    <br>何を選んでも、正解不正解はありません
+</table>
+
+        <!-- <button id="startButton" onclick="start();">スタート</button>  -->
+        <button id="smileButton" onclick="janken('😁');" disabled>😁本当に笑ってる？</button>
+        <button id="nomalButton" onclick="janken('😀');" disabled>😀何考えてる？</button>
+        <button id="cryButton" onclick="janken('😂');" disabled>😂どうして泣いているのかな？</button>
+        <br>
+        
         <br>
         <div id="Result"></div>
     </div>
@@ -107,9 +134,13 @@
            }
 
             function audio() {
-            var sound = document.getElementById("btn_audio"); // audio要素を取得
+
+            var sound = document.getElementById("btn_audio");
+            // muted状態をチェックして、mutedでない場合のみ再生する
+            if (!sound.muted) {
             sound.play(); // 音声を再生
-            }
+    }
+}
 
     function closeWithSound() {
     var sound = document.getElementById("close_audio"); // close_audio要素を取得
@@ -117,10 +148,6 @@
 
     
 }
-
-   
-
-    
     // モーダルを閉じる処理もここに追加するか、もしくはモーダルを閉じる別の処理をトリガーする
     var modal = document.getElementById('resultModal');
     modal.style.display = 'none';
@@ -167,21 +194,6 @@
 
   // 以下、ゲームのロジック
 }
-
-
-// function janken() {
-//   var button = document.getElementById("yourButtonId"); // 正しいIDに置き換えてください
-//   if (button !== null) { // 要素が存在するか確認
-//     button.disabled = true;
-//   } else {
-//     console.log("Button element not found!"); // 要素が見つからない場合のエラーメッセージ
-//   }
-// }
-//     function janken() {
-//     var button = document.getElementById("buttonId"); // 正しいIDを使用
-//     if (button) { // buttonがnullでないことを確認
-//     button.disabled = true;
-//   }
 // }
     document.addEventListener('DOMContentLoaded', function () {
     var closeButton = document.getElementsByClassName('close-button')[0]; // クラス名が 'close-button' の要素を取得
@@ -225,7 +237,7 @@ var modal = document.getElementById('myModal');
             showModal(result); // 結果をモーダルで表示
 
             // ボタンの状態をリセット
-            document.getElementById("startButton").disabled = false;
+            // document.getElementById("startButton").disabled = true;
             document.getElementById("smileButton").disabled = true;
             document.getElementById("nomalButton").disabled = true;
             document.getElementById("cryButton").disabled = true;
@@ -243,7 +255,7 @@ var modal = document.getElementById('myModal');
 
             var closeButton = document.getElementsByClassName('close-button')[0];
             closeButton.onclick = function() {
-                modal.style.display = 'none';
+                // modal.style.display = 'none';
             }
            }
 
@@ -254,13 +266,8 @@ var modal = document.getElementById('myModal');
         document.getElementById('btn_audio').muted = true;
     }
 }
-        //    // muteの切り替え
-        //     function mute() {
-        //     var sound = document.getElementById("btn_audio");
-        //     sound.muted = !sound.muted; // ミュート状態を切り替える
-// }
 
     </script>
 </body>
 </html>
-
+ 
