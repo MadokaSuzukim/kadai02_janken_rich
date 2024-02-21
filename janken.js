@@ -13,7 +13,20 @@ function startWithSound() {
     var sound = document.getElementById("btn_audio");
     sound.play();
     start();
-}
+ // バックグラウンドミュージックを再生
+    var backgroundMusic = document.getElementById("backgroundMusic");
+    backgroundMusic.play();
+    }
+    function closeWithSound() {
+        // 終了時の音声を再生
+        var sound = document.getElementById("close_audio");
+        sound.play();
+    
+        // バックグラウンドミュージックを停止
+        var backgroundMusic = document.getElementById("backgroundMusic");
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0; // 再生位置を最初に戻す
+    }
 
 // ゲーム開始時の設定を行う関数
 function start() {
