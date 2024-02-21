@@ -13,9 +13,10 @@
         <br>相手の感情は読めません。あなたの今の状態を教えてください。<br>
         <br>
         <!-- バックグラウンドミュージック用のaudioタグを追加 -->
-<audio id="backgroundMusic" loop>
-    <source src="backmusic.m4a" type="audio/mp3">
-</audio>
+        <audio id="backgroundMusic" loop autoplay muted>
+            <source src="backmusic.m4a" type="audio/mp3">
+        </audio>
+        
         <!-- スタートボタンに音声再生機能を組み合わせる -->
         <button onclick="startWithSound();">スタート（音付き）</button>
         <!-- mute切り替えボタン -->
@@ -50,13 +51,9 @@
             <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
         </div>
     </div>
-    <script src="janken.js"></script>
+    <script src="janken.js"></script></body>
 
 </html>
-
-
-
-
 
 <table border="1" style="border-collapse: collapse">
            

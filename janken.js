@@ -13,10 +13,29 @@ function startWithSound() {
     var sound = document.getElementById("btn_audio");
     sound.play();
     start();
- // バックグラウンドミュージックを再生
+}
+
+    // スタートボタンがクリックされた時の関数内で音楽再生を制御
+function startWithSound() {
     var backgroundMusic = document.getElementById("backgroundMusic");
-    backgroundMusic.play();
+    
+    // ミュートを解除して再生開始（ブラウザの自動再生ポリシーを回避）
+    if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
     }
+    backgroundMusic.play();
+
+    // その他のスタート時の処理
+    start(); // ゲーム開始の関数を呼び出す
+}
+
+ // バックグラウンドミュージックを再生
+ var backgroundMusic = document.getElementById("backgroundMusic");
+    if (backgroundMusic) {
+        backgroundMusic.muted = false; // ミュートを解除
+        backgroundMusic.play().catch(e => console.error("バックグラウンドミュージックの再生に失敗しました:", e));
+    }
+    
     function closeWithSound() {
         // 終了時の音声を再生
         var sound = document.getElementById("close_audio");
@@ -48,7 +67,11 @@ function toggleMute() {
     var muteButton = document.getElementById("muteButton");
     muteButton.textContent = audioElement.muted ? "Unmute" : "Mute";
 }
-
+// ミュート切り替えの関数（ユーザーが自由に音をオン/オフできるようにする）
+function toggleMute() {
+    var backgroundMusic = document.getElementById("backgroundMusic");
+    backgroundMusic.muted = !backgroundMusic.muted;
+}
 // プレイヤーの選択に応じた処理を行う関数
 function janken(playerHand) {
     // プレイヤーの選択を表示
