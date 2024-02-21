@@ -35,6 +35,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
+
 .startButton {
     box-sizing: border-box;
     background-color: #000;
