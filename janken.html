@@ -12,7 +12,20 @@
         「スタート」を押した後に、<br>今の心の調子を「😁」「😀」「😂」３つのスタンプから選んでね。<br>
         <br>相手の感情は読めません。あなたの今の状態を教えてください。<br>
         <br>
-        <button id="startButton" onclick="start();">スタート</button>
+
+        <!-- スタートボタンに音声再生機能を組み合わせる -->
+        <button onclick="startWithSound();">スタート（音付き）</button>
+        <!-- <div class="btn" onclick="startWithSound();">スタート</div> -->
+        
+        <!-- mute切り替えボタン -->
+        <div class="mute_btn" onclick="mute()">muteの切り替え</div>
+
+        <!-- 音声ファイル -->
+        <audio id="btn_audio">
+            <source src="start.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- <button id="startButton" onclick="start();">スタート</button>  -->
         <button id="smailButton" onclick="janken('😁');" disabled>😁</button>
         <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
         <button id="butButton" onclick="janken('😂');" disabled>😂</button>
@@ -34,11 +47,21 @@
             <span class="close-button">&times;</span>
             <p id="modalText"></p>
             <button id="retryButton">再トライ</button>
+
+            <!-- 終了する際に再生する音声ファイル -->
+<audio id="close_audio">
+    <source src="next.mp3" type="audio/mp3">
+</audio>
+
+<!-- 終了するボタンに音声再生機能を組み合わせる -->
+<button onclick="closeWithSound();">終了する</button>
+
             <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
+            
     </div>
         </div>
     </div>
-
+    <button id="yourButtonId">クリック</button>
     <script>
         const FPS = 30;
         const HANDS = ['😁', '😀', '😂'];
@@ -52,47 +75,109 @@
         }
 
         function start() {
-            document.getElementById("startButton").disabled = true;
+            // ここにゲームのスタートに関する処理を記述 */
+            console.log("ゲームをスタートします。");
+            // スタートボタンを無効化する
+            // document.getElementById("startButton").disabled = true;
+
+            // 他のボタンを有効化する
             document.getElementById("smailButton").disabled = false;
             document.getElementById("nomalButton").disabled = false;
             document.getElementById("butButton").disabled = false;
+
+            // プレイヤーと相手の手を初期化する
             document.getElementById("PlayerHand").innerHTML = ' ';
+            document.getElementById("RivalHand").innerHTML = '';
+
+            // 結果表示をクリアする
             document.getElementById("Result").innerHTML = '';
             gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
-        }
+        
+            // ゲームループを開始する
+            // if (gameLoopInterbalId !== null) 
+            clearInterval(gameLoopInterbalId); // 以前のゲームループが存在する場合はクリアする
+            gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
+           }
 
-        function showModal(result) {
-            var modal = document.getElementById('resultModal');
-            var modalText = document.getElementById('modalText');
-            modalText.innerHTML = result;
-            modal.style.display = 'block';
+            // startWithSound() 関数は正しく音声を再生してから start() 関数を呼び出しているので、このロジックはそのままで問題ありません。
+            function startWithSound() {
+            audio(); // 音声を再生する関数を呼び出す
+            start(); // ゲームのスタート処理を呼び出す
+           }
 
-            var closeButton = document.getElementsByClassName('close-button')[0];
-            closeButton.onclick = function() {
-                modal.style.display = 'none';
+            function audio() {
+            var sound = document.getElementById("btn_audio"); // audio要素を取得
+            sound.play(); // 音声を再生
             }
 
+    function closeWithSound() {
+    var sound = document.getElementById("close_audio"); // close_audio要素を取得
+    sound.play(); // 音声を再生
 
-            // 再トライボタンのクリックイベント
-         retryButton.onclick = function() {
-         modal.style.display = 'none'; // モーダルを閉じる
-         start(); // ゲームを再スタート
-    }
+    
+}
 
-            window.onclick = function(event) {
+   
+
+    
+    // モーダルを閉じる処理もここに追加するか、もしくはモーダルを閉じる別の処理をトリガーする
+    var modal = document.getElementById('resultModal');
+    modal.style.display = 'none';
+
+    // モーダル内の再トライボタンを取得
+    var retryButton = document.getElementById('retryButton');
+    
+    // 再トライボタンにクリックイベントハンドラを設定
+    retryButton.addEventListener('click', function() {
+        var modal = document.getElementById('resultModal');
+        modal.style.display = 'none'; // モーダルを非表示にする
+        start(); // ゲームを再スタート
+
+    
+     // 再トライボタンのクリックイベント
+     retryButton.onclick = function() {
+    modal.style.display = 'none'; // モーダルを閉じる
+    start(); // ゲームを再スタート
+    }});
+    document.addEventListener("DOMContentLoaded", function() {
+      
+    });
+
+    function janken() {
+  var button = document.getElementById("yourButtonId"); // 正しいIDに置き換えてください
+  if (button !== null) { // 要素が存在するか確認
+    button.disabled = true;
+  } else {
+    console.log("Button element not found!"); // 要素が見つからない場合のエラーメッセージ
+  }
+}
+//     function janken() {
+//     var button = document.getElementById("buttonId"); // 正しいIDを使用
+//     if (button) { // buttonがnullでないことを確認
+//     button.disabled = true;
+//   }
+// }
+    document.addEventListener('DOMContentLoaded', function () {
+    var closeButton = document.getElementsByClassName('close-button')[0]; // クラス名が 'close-button' の要素を取得
+    var modal = document.getElementById('resultModal'); // モーダルの要素を取得
+    closeButton.addEventListener('click', function() {
+    modal.style.display = 'none'; // モーダルを非表示にする
+    });
+});
+// モーダルウィンドウの要素を取得
+var modal = document.getElementById('myModal');
+          window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = 'none';
                 }
-            }
-        }
-
+          }
         function janken(playerHand) {
-            clearInterval(gameLoopInterbalId);
+            clearInterval(gameLoopInterbalId);// 既存のゲームループを停止
 
-            document.getElementById("PlayerHand").innerHTML = playerHand;
+            document.getElementById("PlayerHand").innerHTML = playerHand;// プレイヤーの選択を表示
 
-            const rivalHand = HANDS[lastRivalHandIndex];
-            let result = "";
+            const rivalHand = HANDS[lastRivalHandIndex];// 相手の手を取得
+            let result = "";// 結果を格納する変数
 
             // 結果の判定ロジック
             if (playerHand === rivalHand) {
@@ -118,7 +203,37 @@
             document.getElementById("smailButton").disabled = true;
             document.getElementById("nomalButton").disabled = true;
             document.getElementById("butButton").disabled = true;
-        }
+
+            function showModal(result) {
+                var modal = document.getElementById('resultModal');
+            var modalText = document.getElementById('modalText');
+            modalText.innerText = result; // innerHTMLではなくinnerTextを使用しても良い
+            modal.style.display = 'block';
+            }
+            // var modal = document.getElementById('resultModal');
+            // var modalText = document.getElementById('modalText');
+            // modalText.innerHTML = result;
+            // modal.style.display = 'block';
+
+            var closeButton = document.getElementsByClassName('close-button')[0];
+            closeButton.onclick = function() {
+                modal.style.display = 'none';
+            }
+           }
+
+        function mute() {
+    if (document.getElementById('btn_audio').muted) {
+        document.getElementById('btn_audio').muted = false;
+    } else {
+        document.getElementById('btn_audio').muted = true;
+    }
+}
+           // muteの切り替え
+            function mute() {
+            var sound = document.getElementById("btn_audio");
+            sound.muted = !sound.muted; // ミュート状態を切り替える
+}
+
     </script>
 </body>
 </html>
