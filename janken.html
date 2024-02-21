@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>価値観合う合わない！？ゲーム</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link rel="icon" href="path/to/favicon.ico" type="image/x-icon"> -->
 </head>
 <body>
     <div align="center">
@@ -22,13 +23,13 @@
 
         <!-- 音声ファイル -->
         <audio id="btn_audio">
-            <source src="start.mp3" type="audio/mp3">
+        <source src="start.mp3" type="audio/mp3">
         </audio>
 
         <!-- <button id="startButton" onclick="start();">スタート</button>  -->
         <button id="smailButton" onclick="janken('😁');" disabled>😁</button>
         <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
-        <button id="butButton" onclick="janken('😂');" disabled>😂</button>
+        <button id="cryButton" onclick="janken('😂');" disabled>😂</button>
         <br>
         <table border="1" style="border-collapse: collapse">
             <tr>
@@ -83,7 +84,7 @@
             // 他のボタンを有効化する
             document.getElementById("smailButton").disabled = false;
             document.getElementById("nomalButton").disabled = false;
-            document.getElementById("butButton").disabled = false;
+            document.getElementById("cryButton").disabled = false;
 
             // プレイヤーと相手の手を初期化する
             document.getElementById("PlayerHand").innerHTML = ' ';
@@ -144,13 +145,38 @@
     });
 
     function janken() {
-  var button = document.getElementById("yourButtonId"); // 正しいIDに置き換えてください
-  if (button !== null) { // 要素が存在するか確認
-    button.disabled = true;
+  var smileButton = document.getElementById("smileButton");
+  if (smileButton !== null) {
+    smileButton.disabled = true; // ここでエラーが発生している
   } else {
-    console.log("Button element not found!"); // 要素が見つからない場合のエラーメッセージ
+    console.log("smileButton not found");
   }
+  var normalButton = document.getElementById("normalButton"); // 正しいIDを指定
+  if (normalButton !== null) {
+    normalButton.disabled = true; // normalButtonが存在する場合にdisabledをtrueに設定
+  } else {
+    console.log("normalButton not found"); // normalButtonが見つからない場合のログ
+  }
+
+  var cryButton = document.getElementById("cryButton"); // 正しいIDを指定
+  if (cryButton !== null) {
+    cryButton.disabled = true; // cryButtonが存在する場合にdisabledをtrueに設定
+  } else {
+    console.log("cryButton not found"); // cryButtonが見つからない場合のログ
+  }
+
+  // 以下、ゲームのロジック
 }
+
+
+// function janken() {
+//   var button = document.getElementById("yourButtonId"); // 正しいIDに置き換えてください
+//   if (button !== null) { // 要素が存在するか確認
+//     button.disabled = true;
+//   } else {
+//     console.log("Button element not found!"); // 要素が見つからない場合のエラーメッセージ
+//   }
+// }
 //     function janken() {
 //     var button = document.getElementById("buttonId"); // 正しいIDを使用
 //     if (button) { // buttonがnullでないことを確認
@@ -202,7 +228,7 @@ var modal = document.getElementById('myModal');
             document.getElementById("startButton").disabled = false;
             document.getElementById("smailButton").disabled = true;
             document.getElementById("nomalButton").disabled = true;
-            document.getElementById("butButton").disabled = true;
+            document.getElementById("cryButton").disabled = true;
 
             function showModal(result) {
                 var modal = document.getElementById('resultModal');
@@ -228,11 +254,11 @@ var modal = document.getElementById('myModal');
         document.getElementById('btn_audio').muted = true;
     }
 }
-           // muteの切り替え
-            function mute() {
-            var sound = document.getElementById("btn_audio");
-            sound.muted = !sound.muted; // ミュート状態を切り替える
-}
+        //    // muteの切り替え
+        //     function mute() {
+        //     var sound = document.getElementById("btn_audio");
+        //     sound.muted = !sound.muted; // ミュート状態を切り替える
+// }
 
     </script>
 </body>
