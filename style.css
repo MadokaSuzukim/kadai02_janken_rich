@@ -39,7 +39,24 @@ button:disabled {
     color: #666666; /* 非活性時の文字色 */
     cursor: not-allowed; /* カーソルを禁止マークに */
 }
+.button-container {
+    margin-bottom: 20px; /* スペースを追加 */
+}
 
+.reaction-buttons button {
+    margin-right: 10px; /* ボタン間のスペース */
+}
+
+.reaction-buttons {
+    display: flex;
+    justify-content: center; /* ボタンを中央に配置 */
+}
+/* リアクションボタンサイズ変更 */
+.reaction-buttons img {
+    width: 300px;
+    /* 必要に応じて高さも設定できます */
+    height: auto; /* アスペクト比を保持 */
+}
 /* モーダルウィンドウ全体のスタイル */
 .modal {
     display: none; /* 初期状態では非表示 */
@@ -80,7 +97,7 @@ button:disabled {
 /* MARUMARKボタンのスタイリング */
 .marumark-button {
     display: inline-block;
-    background-color: blue; /* 背景色 */
+    background-color: orange; /* 背景色 */
     color: white; /* 文字色 */
     padding: 10px 20px; /* パディング */
     margin: 10px; /* マージン */
@@ -120,7 +137,7 @@ body {
 
 /* ボタンのスタイリング */
 button {
-    background-color: blue;
+    background-color: orange;
     color: white;
     padding: 14px 20px;
     margin: 10px;
@@ -131,7 +148,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: gray;
 }
 
 button:disabled {
@@ -192,7 +209,7 @@ button:disabled {
 /* MARUMARKボタンの色や表示方法 */
 .marumark-button {
     display: inline-block;
-    background-color: blue; /* 背景色 */
+    background-color: orange; /* 背景色 */
     color: white; /* テキスト色 */
     padding: 10px 20px; /* パディング */
     margin: 10px; /* 余白 */
@@ -204,7 +221,7 @@ button:disabled {
 }
 /* MARUMARKボタン */
 .marumark-button:hover {
-    background-color: blue; /* ホバー時の背景色 */
+    background-color: gray; /* ホバー時の背景色 */
 }
 
 
