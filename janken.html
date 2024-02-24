@@ -3,79 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>価値観合う合わない！？ゲーム</title>
+    <title>なんて話しかける？</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="/favicon.png">
 </head>
+<body>
     <div align="center">
-        <h2>価値観合う合わない！？ゲーム</h2>
-        「スタート」を押した後に、<br>今の心の調子を「😁」「😀」「😂」３つのスタンプから選んでね。<br>
-        <br>相手の感情は読めません。あなたの今の状態を教えてください。<br>
-        <br>
-        <!-- バックグラウンドミュージック用のaudioタグを追加 -->
+        <h1>今日のお友だちは元気かな？</h1>
+        <!-- カード表示エリア -->
+        <div id="cardContainer" style="display:none;">
+   </div>
+   <!-- カードの内容は JavaScript で動的に追加される -->
+   <br>「スタート」をおして、<br>どうやって話しかけるか３つのカードから選んでね。<br>
+
+    <!-- バックグラウンドミュージック用のaudioタグを追加 -->
         <audio id="backgroundMusic" loop>
             <source src="backmusic.m4a" type="audio/mp3">
         </audio>
         
+    <!-- スタートボタンとミュートボタンのコンテナ -->
+    <div class="button-container">
+    
         <!-- スタートボタンに音声再生機能を組み合わせる -->
         <button onclick="startWithSound();">スタート（音付き）</button>
+    
         <!-- mute切り替えボタン -->
-        <button id="muteButton" onclick="toggleMute()">Mute / Unmute</button>
-        <!-- 音声ファイル -->
-        <audio id="btn_audio">
-            <source src="start.mp3" type="audio/mp3">
-        </audio>
-            <button id="smileButton" onclick="janken('😁');" disabled>😁</button>
-            <button id="nomalButton" onclick="janken('😀');" disabled>😀</button>
-            <button id="cryButton" onclick="janken('😂');" disabled>😂</button>
-        <br>
-        <table border="1" style="border-collapse: collapse">
-            <tr>
-                <td align="center"><h2>貴方の感情 <div id="PlayerHand"> </div></h2></td>
-                <td align="center"><h2>相手の感情 <div id="RivalHand"> </div></h2></td>
-            </tr>
-        </table>
-        <br>
-        <div id="Result"></div>
+        <button id="muteButton" onclick="toggleMute()">音を消す / 音を出す</button>
     </div>
+     
+     <!-- 音声ファイル -->
+<audio id="btn_audio">
+    <source src="start.mp3" type="audio/mp3">
+</audio>
+
+<!-- リアクションボタンのコンテナ -->
+<div class="reaction-buttons">
+    <button id="smileButton" onclick="janken('😁');" disabled><img src="image/1.png" alt=""></button>
+    <button id="nomalButton" onclick="janken('😀');" disabled><img src="image/2.png" alt=""></button>
+    <button id="cryButton" onclick="janken('😂');" disabled><img src="image/3.png" alt=""></button>
+</div>
+<br>
+<table border="1" style="border-collapse: collapse">     
+<br>どんな思いかなんてわからないけど、知ろうとするのって大事だよね。
+</table>
+        
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <td align="center" id="playerEmotion"><h2>貴方の感情 <div id="PlayerHand"></div></h2></td>
+        <td align="center" id="opponentEmotion"><h2>相手の感情 <div id="RivalHand"></div></h2></td>
+    </tr>
+       
+</table>
+    <br>
+<div id="Result"></div>
+</div>
+
     <!-- モーダルのHTML -->
-    <div id="resultModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <p id="modalText"></p>
-            <button id="retryButton">再トライ</button>
-            <audio id="close_audio">
-                <source src="next.mp3" type="audio/mp3">
-            </audio>
-            <button onclick="closeWithSound();">終了する</button>
-            <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
-        </div>
-    </div>
-    <script src="janken.js"></script></body>
+<div id="resultModal" class="modal">
+<div class="modal-content">
+    <span class="close-button">&times;</span>
+    <p id="modalText"></p>
+    <button id="retryButton">再トライ</button>
+    <audio id="close_audio">
+        <source src="next.mp3" type="audio/mp3">
+    </audio>
+            
+    <button onclick="closeWithSound();">終了する</button>
+    <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
+</div>
+</div>
+    
+<script src="janken.js"></script></body>
 
 </html>
-
-<table border="1" style="border-collapse: collapse">
-           
-    <br>何を選んでも、正解不正解はありません
-</table>
-
-        <!-- <button id="startButton" onclick="start();">スタート</button>  -->
-        <button id="smileButton" onclick="janken('😁');" disabled>😁本当に笑ってる？</button>
-        <button id="nomalButton" onclick="janken('😀');" disabled>😀何考えてる？</button>
-        <button id="cryButton" onclick="janken('😂');" disabled>😂どうして泣いているのかな？</button>
-        <br>
+       
+<!-- <img src="image/cry.png" alt="泣いている" />
+<img src="image/angry.png" alt="怒っている" />
+<img src="image/laugh.png" alt="笑っている" />
+        <div>本当に笑ってる？</button>
+            <div>何考えてる？</div>
+            <div>どうして泣いているのかな？</div> -->
+        <!-- <br>
         
-        <br>
-        <div id="Result"></div>
-    </div>
+        <br> -->
+<div id="Result"></div>
+</div>
 
-    <!-- モーダルのHTML -->
-    <div id="resultModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <p id="modalText"></p>
-            <button id="retryButton">再トライ</button>
+<!-- モーダルのHTML -->
+<div id="resultModal" class="modal">
+<div class="modal-content">
+        <span class="close-button">&times;</span>
+        <p id="modalText"></p>
+        <button id="retryButton">再トライ</button>
 
 <!-- 終了する際に再生する音声ファイル -->
 <audio id="close_audio">
@@ -84,12 +103,11 @@
 
 <!-- 終了するボタンに音声再生機能を組み合わせる -->
 <button onclick="closeWithSound();">終了する</button>
-
-            <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
+<a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
             
-    </div>
-        </div>
-    </div>
+    <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
     <!-- <button id="yourButtonId">クリック</button> -->
     <script>
         const FPS = 30;
@@ -100,42 +118,51 @@
             const handIndex = (lastRivalHandIndex + 1) % HANDS.length;
             lastRivalHandIndex = handIndex;
             document.getElementById("RivalHand").innerHTML = HANDS[handIndex];
-        }
+}
 
-        function start() {
-            // ここにゲームのスタートに関する処理を記述 */
-            console.log("ゲームをスタートします。");
+    function start() {
+    // ここにゲームのスタートに関する処理 */
+        console.log("ゲームをスタートします。")
+        alert ("スタートします。音楽が流れるよ。止めたいときは、音を消すを押してね。");;
+    // バックグラウンドミュージックの再生
+    var backgroundMusic = document.getElementById("backgroundMusic");
+    backgroundMusic.play().then(() => {
+        console.log("バックグラウンドミュージックの再生を開始しました。");
+    }).catch(error => {
+        console.error("バックグラウンドミュージックの再生に失敗しました:", error);
+    });
 
-            // 他のボタンを有効化する
-            document.getElementById("smileButton").disabled = false;
-            document.getElementById("nomalButton").disabled = false;
-            document.getElementById("cryButton").disabled = false;
 
-            // プレイヤーと相手の手を初期化する
-            document.getElementById("PlayerHand").innerHTML = ' ';
-            document.getElementById("RivalHand").innerHTML = '';
+    // 他のボタンを有効化する
+        document.getElementById("smileButton").disabled = false;
+        document.getElementById("nomalButton").disabled = false;
+        document.getElementById("cryButton").disabled = false;
 
-            // 結果表示をクリアする
-            document.getElementById("Result").innerHTML = '';
-            gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
+    // プレイヤーと相手の手を初期化する
+        document.getElementById("PlayerHand").innerHTML = ' ';
+        document.getElementById("RivalHand").innerHTML = '';
+
+    // 結果表示をクリアする
+        document.getElementById("Result").innerHTML = '';
+        gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
         
-            // ゲームループを開始する
-            // if (gameLoopInterbalId !== null) 
-            clearInterval(gameLoopInterbalId); // 以前のゲームループが存在する場合はクリアする
-            gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
-           }
+    // ゲームループを開始する
+    // if (gameLoopInterbalId !== null) 
+        clearInterval(gameLoopInterbalId); // 以前のゲームループが存在する場合はクリアする
+        gameLoopInterbalId = setInterval(gameLoop, 1000 / FPS);
+}
 
-            // startWithSound() 関数は正しく音声を再生してから start() 関数を呼び出しているので、このロジックはそのままで問題ありません。
-            function startWithSound() {
-            audio(); // 音声を再生する関数を呼び出す
-            start(); // ゲームのスタート処理を呼び出す
-           }
-            function audio() {
-
-            var sound = document.getElementById("btn_audio");
-            // muted状態をチェックして、mutedでない場合のみ再生する
-            if (!sound.muted) {
-            sound.play(); // 音声を再生
+    // startWithSound() 関数は正しく音声を再生してから start() 関数を呼び出しているので、このロジックはそのままで問題ありません。
+    function startWithSound() {
+        audio(); // 音声を再生する関数を呼び出す
+        start(); // ゲームのスタート処理を呼び出す
+}
+        
+    function audio() {
+    var sound = document.getElementById("btn_audio");
+    // muted状態をチェックして、mutedでない場合のみ再生する
+    if (!sound.muted) {
+    sound.play(); // 音声を再生
     }
 }
     function closeWithSound() {
@@ -162,9 +189,9 @@
     start(); // ゲームを再スタート
     }});
     document.addEventListener("DOMContentLoaded", function() {
-      
     });
 
+// じゃんけん関数
     function janken() {
   var smileButton = document.getElementById("smileButton");
   if (smileButton !== null) {
@@ -185,10 +212,9 @@
   } else {
     console.log("cryButton not found"); // cryButtonが見つからない場合のログ
   }
-
-  // 以下、ゲームのロジック
 }
-// }
+// 以下、ゲームのロジック
+
     document.addEventListener('DOMContentLoaded', function () {
     var closeButton = document.getElementsByClassName('close-button')[0]; // クラス名が 'close-button' の要素を取得
     var modal = document.getElementById('resultModal'); // モーダルの要素を取得
@@ -211,21 +237,21 @@ var modal = document.getElementById('myModal');
             const rivalHand = HANDS[lastRivalHandIndex];// 相手の手を取得
             let result = "";// 結果を格納する変数
 
-            // 結果の判定ロジック
+// 結果の判定ロジック
             if (playerHand === rivalHand) {
-                result = "価値観合いますね！でも、今日だけかもしれません。あなたにとって、そして相手にとっての価値観を認識していけたら良いですね!良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "すてきな言葉をかけれましたね!";
             } else if (playerHand === '😁' && rivalHand === '😀') {
-                result = "何かしら、不一致がある部分があるのかもしれません、対話で擦り合わせてみませんか？良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "相手がどう考えているのかを知るのってたいせつだよね。";
             } else if (playerHand === '😂' && rivalHand === '😁') {
-                result = "あなたの感情を開示できる状態じゃないのかもしれない。しんどさがあったら誰かに打ち明けるのも一つです。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "今はそっとしといたほうがいいのかもしれないね。しんどさがあったら誰かに打ち明けるのも一つです。";
             } else if (playerHand === '😂' && rivalHand === '😀') {
-                result = "価値観に誤解はつきものです。いつでも完全に理解はできないということを頭に入れて、自分自身の想いを共有してみましょう。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "おたがいにとって、いいところってどこだろう？";
             } else if (playerHand === '😁' && rivalHand === '😂' || playerHand === '😀' && rivalHand === '😂') {
-                result = "自分にとって良い状況は、もしかしたら相手にとっては不快なのかもしれないと考えてみても良いですね。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "自分がしんどい時も、伝えられるといいよね。";
             } else if (playerHand === '😀' && rivalHand === '😁' ) {
-                result = "自分にとっての状況は、もしかしたら相手にはよい印象を与えているかもしれないと考えてみても良いですね。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "おともだちがげんきだとうれしいね!";
             }else {
-                result = "皆違って当たり前ですよね!良かったらもう一度試してみましょう。良かったらMARUMARKをタップして、日々の心の調子をチェックしてみませんか？";
+                result = "みんなしんどい時もいい時もあるのが当たり前だね!良かったらもう一度試してみましょう。";
             }
 
             showModal(result); // 結果をモーダルで表示
@@ -242,25 +268,19 @@ var modal = document.getElementById('myModal');
             modalText.innerText = result; // innerHTMLではなくinnerTextを使用しても良い
             modal.style.display = 'block';
             }
-            // var modal = document.getElementById('resultModal');
-            // var modalText = document.getElementById('modalText');
-            // modalText.innerHTML = result;
-            // modal.style.display = 'block';
-
-            var closeButton = document.getElementsByClassName('close-button')[0];
+var closeButton = document.getElementsByClassName('close-button')[0];
             closeButton.onclick = function() {
-                // modal.style.display = 'none';
+            modal.style.display = 'none';
             }
            }
 
-        function mute() {
+function mute() {
     if (document.getElementById('btn_audio').muted) {
         document.getElementById('btn_audio').muted = false;
     } else {
         document.getElementById('btn_audio').muted = true;
     }
 }
-
     </script>
 <footer>
     <a target="_blank" href="https://icons8.com/icon/NC4u31qGQ7Rz/ok">OK</a> アイコン by <a target="_blank" href="https://icons8.com">Icons8</a>
