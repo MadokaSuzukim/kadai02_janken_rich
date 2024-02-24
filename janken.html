@@ -47,13 +47,13 @@
 <br>どんな思いかなんてわからないけど、知ろうとするのって大事だよね。
 </table>
         
-<table border="1" style="border-collapse: collapse">
+<!-- <table border="1" style="border-collapse: collapse">
     <tr>
         <td align="center" id="playerEmotion"><h2>貴方の感情 <div id="PlayerHand"></div></h2></td>
         <td align="center" id="opponentEmotion"><h2>相手の感情 <div id="RivalHand"></div></h2></td>
     </tr>
        
-</table>
+</table> -->
     <br>
 <div id="Result"></div>
 </div>
@@ -117,7 +117,7 @@
         function gameLoop() {
             const handIndex = (lastRivalHandIndex + 1) % HANDS.length;
             lastRivalHandIndex = handIndex;
-            document.getElementById("RivalHand").innerHTML = HANDS[handIndex];
+            // document.getElementById("RivalHand").innerHTML = HANDS[handIndex];
 }
 
     function start() {
@@ -139,8 +139,8 @@
         document.getElementById("cryButton").disabled = false;
 
     // プレイヤーと相手の手を初期化する
-        document.getElementById("PlayerHand").innerHTML = ' ';
-        document.getElementById("RivalHand").innerHTML = '';
+        // document.getElementById("PlayerHand").innerHTML ='';
+        // document.getElementById("RivalHand").innerHTML ='';
 
     // 結果表示をクリアする
         document.getElementById("Result").innerHTML = '';
@@ -232,7 +232,7 @@ var modal = document.getElementById('myModal');
         function janken(playerHand) {
             clearInterval(gameLoopInterbalId);// 既存のゲームループを停止
 
-            document.getElementById("PlayerHand").innerHTML = playerHand;// プレイヤーの選択を表示
+            // document.getElementById("PlayerHand").innerHTML = playerHand;// プレイヤーの選択を表示
 
             const rivalHand = HANDS[lastRivalHandIndex];// 相手の手を取得
             let result = "";// 結果を格納する変数
@@ -270,7 +270,7 @@ var modal = document.getElementById('myModal');
             }
 var closeButton = document.getElementsByClassName('close-button')[0];
             closeButton.onclick = function() {
-            modal.style.display = 'none';
+            // modal.style.display = 'none';
             }
            }
 
