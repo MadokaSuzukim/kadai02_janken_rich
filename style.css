@@ -268,3 +268,10 @@ button:disabled {
     background-color: rgba(0,0,0,0.4); /* 背景色 */
     border-radius: 5px; /* 角丸 */border-radius: 5px; /* 角丸 */
 } 
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

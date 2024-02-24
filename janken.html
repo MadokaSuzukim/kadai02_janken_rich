@@ -60,21 +60,20 @@
 </div>
 
     <!-- モーダルのHTML -->
-<div id="resultModal" class="modal">
-<div class="modal-content">
-    <span class="close-button">&times;</span>
-    <p id="modalText"></p>
-    <button id="retryButton">再トライ</button>
+    <div id="resultModal" class="modal" style="display:none;">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <p id="modalText"></p>
+          <!-- その他のモーダル内容 -->
+          <button id="retryButton">再トライ</button>
     <audio id="close_audio">
         <source src="next.mp3" type="audio/mp3">
     </audio>
-            
     <button onclick="closeWithSound();">終了する</button>
     <a href="https://marumark-98145.bubbleapps.io/signin" target="_blank" class="marumark-button">Marumark</a>
-</div>
-</div>
-    
-<script src="janken.js"></script></body>
+        </div>
+      </div>
+    <script src="janken.js"></script></body>
 
 </html>
        
@@ -286,5 +285,6 @@ function mute() {
 <footer>
     <a target="_blank" href="https://icons8.com/icon/NC4u31qGQ7Rz/ok">OK</a> アイコン by <a target="_blank" href="https://icons8.com">Icons8</a>
 </footer>
-</body></html>
+</body>
+</html>
  
