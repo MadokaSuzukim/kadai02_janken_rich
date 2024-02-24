@@ -15,7 +15,39 @@ body {
 h2 {
     color: #444; /* タイトルの色 */
 }
+/* スマートフォンなどの小さなデバイス用のスタイル */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
 
+/* タブレット用のスタイル */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* デスクトップ用のスタイル */
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: 1 1 200px; /* アイテムが最低200pxの幅を持ち、利用可能なスペースに基づいて拡大縮小する */
+}
+/* 画像のサイズを動的に調整する */
+img {
+    max-width: 100%;
+    height: auto;
+}
 /* ボタン共通スタイル */
 button {
     background-color: blue; /* ボタンの背景色 */
